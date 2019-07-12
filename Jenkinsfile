@@ -1,5 +1,4 @@
-def ls_command
-    
+def ls_command  
 pipeline {
     agent {
         label 'master'
