@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        label 'master'
+        
+    }
+    stages {
+        stage('checkout'){
+            steps {
+                script {
+                    git credentialsId: '8ff812fa-3ae7-4018-bf48-fa1d62916010', url: 'https://github.com/ystroog/devops.git'
+                }
+            }
+        }
+    stage ('shel command') {
+        steps {
+            script {
+                sh label: '', script: 'ls -lah /'
+            }
+        }
+    }    
+    }
+}
