@@ -25,7 +25,7 @@ pipeline {
                 
             steps {
                 script {
-                    sh "cd /&& cd /opt/jenkins_home/jenkinsfile_ansible&& ls"
+                    sh "cd /&& cd /opt/jenkins_home/jenkinsfile_ansible && ls"
                     sh "echo $HOST >> hosts"
                     sh "ansible-playbook -i hosts  -u centos -b --private-key=/var/jenkins_home/ansible/my.pem /opt/jenkins_home/jenkinsfile_ansible/dockerplaybook.yml"
                     sh 'rm hosts'
