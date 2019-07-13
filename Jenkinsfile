@@ -27,7 +27,7 @@ pipeline {
                 script {
                     sh "cd /&& cd /var/jenkins_home/ansible&& ls"
                     sh "echo $HOST >> hosts"
-                    sh "ansible-playbook -i hosts  -u centos -b --private-key=/var/jenkins_home/ansible/my.pem /var/jenkins_home/ansible/playbook.yaml"
+                    sh "ansible-playbook -i hosts  -u centos -b --private-key=/var/jenkins_home/ansible/my.pem /var/jenkins_home/ansible/playbook.yml"
                     sh 'rm hosts'
                 }
             }
