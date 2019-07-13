@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     cleanWs()
-                    git credentialsId: 'devopint', url: 'https://github.com/DevOpsINT/Course.git'
+                    git credentialsId: '04183fb4-b64b-48f3-915b-33508577ba9d', url: 'https://github.com/ystroog/devops.git'
                     sh 'ls'
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
                 script {
                     sh "cd /&& cd /var/jenkins_home/ansible&& ls"
                     sh "echo $HOST >> hosts"
-                    sh "ansible-playbook -i hosts  -u ubuntu -b --private-key=/var/jenkins_home/ansible/my.pem /var/jenkins_home/ansible/playbook.yaml"
+                    sh "ansible-playbook -i hosts  -u centos -b --private-key=/var/jenkins_home/ansible/my.pem /var/jenkins_home/ansible/playbook.yaml"
                     sh 'rm hosts'
                 }
             }
