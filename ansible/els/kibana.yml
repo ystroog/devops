@@ -1,0 +1,21 @@
+---
+
+ - name: Pull and started Kibana
+    docker_image:
+        name: docker.elastic.co/kibana/kibana:7.2.0
+        source: pull
+        
+  - name: Start Kibana
+    docker_container:
+      name: Kibana
+      image: docker.elastic.co/kibana/kibana:7.2.0
+      state: started
+	  link: Elasticsearch:elasticsearch_alias
+      ports:
+        - "5601:5601"
+      volumes:
+        - /var/share/elasticsearch:/usr/share/elasticsearch/data
+
+  
+  
+  
