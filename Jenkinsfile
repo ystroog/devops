@@ -31,6 +31,4 @@ pipeline {
                     sh 'rm hosts'
                 }
             }
-        }
-    }
-}
+
