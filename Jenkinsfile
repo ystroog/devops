@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     cleanWs()
-                    git credentialsId: '04183fb4-b64b-48f3-915b-33508577ba9d', url: 'https://github.com/ystroog/devops.git'
+                    git credentialsId: '63aa33e1-2c90-468f-8946-d612935168b6', url: 'https://github.com/ystroog/devops.git'
                     sh 'ls'
                 }
             }
