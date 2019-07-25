@@ -16,7 +16,7 @@ pipeline {
         stage {
             script  {
                 sh "cd /var/jenkins_home/workspace/Install ELS/ansible/els"
-                sh "cp docker_file.yml  /var/jenkins_home/ansible/els/docker_file.yml
+                sh "cp docker_config.yml  /var/jenkins_home/ansible/els/docker_config.yml
                 sh "cp /var/jenkins_home/workspace/Install ELS/pem_keydevepo2.pem /var/jenkins_home/ansible/els/*
             }
         }
