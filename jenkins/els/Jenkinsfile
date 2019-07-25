@@ -13,6 +13,12 @@ pipeline {
                 }
             }
         }
+        stage {
+            script  {
+                sh "cd /var/jenkins_home/workspace/Install ELS/ansible/els"
+                sh "cp /var/jenkins_home/workspace/Install ELS/ansible/els /var/jenkins_home/ansible/els
+            }
+        }
         stage('Ansible Playbook') {
              input{
                 message 'Enter Host'
