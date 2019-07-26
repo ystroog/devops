@@ -16,8 +16,8 @@ pipeline {
         stage {
             script  {
                 sh "cd /var/jenkins_home/workspace/Install ELS/ansible/els"
-                sh "copy docker_config.yml /A /var/jenkins_home/ansible/els/docker_config.yml /A
-                sh "copy /var/jenkins_home/workspace/Install ELS/pem_keydevepo2.pem /A /var/jenkins_home/ansible/els/ /A
+                sh "copy docker_config.yml /var/jenkins_home/ansible/els/docker_config.yml 
+                sh "copy /var/jenkins_home/workspace/Install ELS/pem_keydevepo2.pem /var/jenkins_home/ansible/els/
             }
         }
         stage('Ansible Playbook') {
