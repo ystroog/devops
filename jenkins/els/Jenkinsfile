@@ -13,7 +13,7 @@ pipeline {
                 }
             }
         }
-        stage (Ansible Playbook ) {
+        stage ('Ansible Playbook') {
             Steps {
                 dir ('Devops/') {
                     script {
