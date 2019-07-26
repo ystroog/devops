@@ -1,0 +1,10 @@
+FROM jenkinsci/jenkins
+USER root
+RUN apt -y update
+RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+RUN echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list
+RUN apt-get update
+RUN apt-get install jenkins
+RUN apt -y install ansible
+USER jenkins
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
