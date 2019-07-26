@@ -23,6 +23,9 @@ pipeline {
                                 string(defaultValue: '0.0.0.0',
                                        description: 'ip address',
                                        name: 'IP')]) 
+                    }
+                }
+            }
            stage ('Running Playbook') {
                steps {
                    script {
@@ -30,12 +33,8 @@ pipeline {
                     sh "echo $HOST >> hosts"
                     sh "/usr/bin/ansible-playbook -i hosts  -b --private-key=/var/jenkins_home/ansible/els/devepo2.pem /var/jenkins_home/ansible/els/docker_config.yml"
                     sh 'rm hosts'
-                }
-            }
-        }
+                   }
+               }
+           }
     }
-}
-        }
-    }
-}
 }
