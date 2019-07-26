@@ -13,23 +13,16 @@ pipeline {
                 }
             }
         }
-        stage {
-            script  {
-                sh "cd /var/jenkins_home/workspace/Install ELS/ansible/els"
-                sh "copy docker_config.yml /var/jenkins_home/ansible/els/docker_config.yml 
-                sh "copy /var/jenkins_home/workspace/Install ELS/pem_keydevepo2.pem /var/jenkins_home/ansible/els/
-            }
-        }
-        stage('Ansible Playbook') {
-             input{
-                message 'Enter Host'
-                    id 'Host'
-                    ok 'OK'
-                    parameters {
-                        string defaultValue: 'Host', description: '', name: 'HOST', trim: false
-                    }
-             }
-                
+        stage (Ansible Playbook ) {
+            Steps {
+                dir ('Devops/') {
+                    script {
+                    targetIP = input(
+                            id: 'userInput', message: 'ip add',
+                            parameters: [
+                                string(defaultValue: '0.0.0.0',
+                                       description: 'ip address',
+                                       name: 'IP')])         
             steps {
                 script {
                     sh "cd /&& cd /var/jenkins_home/ && ls"
