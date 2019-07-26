@@ -1,4 +1,3 @@
-def ls_command  
 pipeline {
     agent {
         label 'master'
@@ -13,8 +12,8 @@ pipeline {
                 }
             }
         }
-        stage ('Ansible Playbook inserting host') {
-            Steps {
+        stage('Ansible Playbook inserting host') {
+            steps {
                 dir ('Devops/') {
                     script {
                     targetIP = input(
@@ -27,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage ('Running Playbook') {
+        stage('Running Playbook') {
              steps {
                  script {
                     sh "cd /&& cd /var/jenkins_home/ && ls"
