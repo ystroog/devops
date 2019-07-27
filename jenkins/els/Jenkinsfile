@@ -12,12 +12,12 @@ pipeline {
                 }
             }
         }
-        stage('Ansible Playbook inserting host') {
+        stage('Ansible Playbook inserting ELasticsearch host') {
             steps {
-                dir ('Devops/') {
+                dir('Devops/') {
                     script {
-                    targetIP = input(
-                            id: 'userInput', message: 'ip add',
+                    ElstargetIP = input(
+                            id: 'userInput', message: 'Please Input the Elasticsearch ip address',
                             parameters: [
                                 string(defaultValue: '0.0.0.0',
                                        description: 'ip address',
@@ -26,29 +26,29 @@ pipeline {
                 }
             }
         }
-        stage("Gather Deployment Parameters") {
+        stage('Ansible Playbook inserting Agent host') {
             steps {
-                timeout(time: 30, unit: 'SECONDS') {
+                dir('Devops/') {
                     script {
-                        // Show the select input modal
-                       def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
-                                        parameters: [
-                                        choice(name: 'ENVIRONMENT', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment'),
-                                        choice(name: 'IMAGE_TAG', choices: getDockerImages(), description: 'Available Docker Images')]
-                        env.ENVIRONMENT = INPUT_PARAMS.ENVIRONMENT
-                        env.IMAGE_TAG = INPUT_PARAMS.IMAGE_TAG
+                    AgenttargetIP = input(
+                            id: 'userInput', message: 'Please Input the Agent ip address',
+                            parameters: [
+                                string(defaultValue: '0.0.0.0',
+                                       description: 'ip address',
+                                       name: 'IP')]) 
                     }
                 }
             }
         }
-        stage("Use Deployment Parameters") {
-         steps {
-                script {
-                    echo "All parameters have been set as Environment Variables"
-                    echo "Selected Environment: ${env.ENVIRONMENT}"
-                    echo "Selected Tag: ${env.IMAGE_TAG}"
-                }
-         }
-        }
+        stage {
+            steps {
+                sh "sed -i 's/HOST_IP/${targetIP}/g' hosts"
+                    sh "sed -i 's/host_ip/${targetIP}/g' group_vars/all"
+                    sh 'cat hosts'
+                    sh 'cat group_vars/all'
+                    sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem roles/Configure/tasks/main.yml"
+                    sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem playbook.yml"
+            }
+        }            
     }
 }
