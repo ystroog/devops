@@ -42,12 +42,12 @@ pipeline {
         }
         stage {
             steps {
-                sh "sed -i 's/HOST_IP/${targetIP}/g' hosts"
-                    sh "sed -i 's/host_ip/${targetIP}/g' group_vars/all"
-                    sh 'cat hosts'
-                    sh 'cat group_vars/all'
-                    sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem roles/Configure/tasks/main.yml"
-                    sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem playbook.yml"
+                sh "sed -i 's/host_ip/${ElstargetIP}/g' hosts"
+                sh "sed -i 's/agent_ip/${AgenttargetIP}/g' hosts"
+                sh 'cat hosts'
+                sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem ansible/els/docker_config.yml"
+				sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem ansible/els/esl.yml"
+				sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/my.pem ansible/els/kibana.yml"
             }
         }            
     }
