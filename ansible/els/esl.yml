@@ -1,18 +1,26 @@
 ---
 
+ - name: Increase memory
+   raw: sysctl -w vm.max_map_count=262144
+ 
  - name: Pull and started ELS
     docker_image:
-        name: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+        name: docker pull docker.elastic.co/elasticsearch/elasticsearch:6.5.4
         source: pull
     
   - name: Start ELS
     docker_container:
-      name: Els
-      image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+      name: ElS
+      hostname: elasticsearch
+      image: elasticsearch:6.5.4
       state: started
-      environment:discovery.type=single-node
+      environment:
+        - discovery.type=single-node
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        - network.host=localhost
       ports:
         - "9200:9200"
         - "9300:9300"
       volumes:
-        - /var/share/elasticsearch:/usr/share/elasticsearch/data
+        - /var/elasticsearch/data:/usr/share/elasticsearch/data
