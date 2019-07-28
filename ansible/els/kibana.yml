@@ -2,19 +2,26 @@
 
  - name: Pull and started Kibana
     docker_image:
-        name: docker.elastic.co/kibana/kibana:7.2.0
+        name: docker.elastic.co/kibana/kibana:6.5.4
         source: pull
         
-  - name: Start Kibana
+  - name: Kibana Docker
     docker_container:
       name: Kibana
-      image: docker.elastic.co/kibana/kibana:7.2.0
+      hostname: kibana
+      image: kibana:6.5.4
       state: started
-	  link: Elasticsearch:elasticsearch_alias
+      environment:
+        SERVER_NAME: kibana
+        server.host: "0.0.0.0"
+        ELASTICSEARCH_HOSTS:  [ "http://localhost:9200" ]
+      link: 
+      	  - "elasticsearch"
       ports:
         - "5601:5601"
       volumes:
-        - /var/share/elasticsearch:/usr/share/elasticsearch/data
+        - /var/elasticsearch:/usr/share/elasticsearch/data
+       restart: yes
 
   
   
