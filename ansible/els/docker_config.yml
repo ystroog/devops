@@ -10,28 +10,43 @@
   tasks:
   - name: Install docker
     apt:
-      name: docker
+      name: docker.io
       state: present
+      
   - name: Start docker service
     service:
       name: docker
       state: started
 
-  - name: Create Folder ELS
+  - name: Create Folder ELS Config
     file:
-      path: /var/share/elasticsearch
+      path: /var/elasticsearch/config
       state: directory
-
-  - name: Change Owner ELS
-    file:
-      path: /var/share/elasticsearch
+      recurse: yes
       owner: 1000
       group: 1000
-      
-- name: Create Folder Kibana
-    file:
-      path: /opt/share/kibana
+      mode: u+rw
       state: directory
+
+  - name:  ELS DB
+    file:
+      path: /var/elasticsearch/data
+      state: directory
+      
+  - name: Create Folder Kibana
+    file:
+      path: /var/kibana
+      state: directory
+      owner: 1000
+      group: 1000
+      mode: u+rw
+      
+   - name: Change Owner
+     file:
+      path: /opt/elasticsearch/data
+      recurse: yes
+      owner: 1000
+      group: 1000
 
  
 
