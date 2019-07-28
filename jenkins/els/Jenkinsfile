@@ -25,27 +25,12 @@ pipeline {
                     }
                 }
             }
-        }
-        stage('Ansible Playbook inserting Agent host') {
-            steps {
-                dir('Devops/') {
-                    script {
-                    AgenttargetIP = input(
-                            id: 'userInput', message: 'Please Input the Agent ip address',
-                            parameters: [
-                                string(defaultValue: '0.0.0.0',
-                                       description: 'ip address',
-                                       name: 'IP')]) 
-                    }
-                }
-            }
-        }
+        }   
         stage('Ansible Playbokk running') {
             steps {
                 sh "sed -i 's/host_ip/${ElstargetIP}/g' hosts/hosts"
-                sh "sed -i 's/agent_ip/${AgenttargetIP}/g' hosts/hosts"
                 sh 'cat hosts/hosts'
-                sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/ys.pem ansible/els/docker_config.yml"
+                sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/devepo2.pem ansible/els/docker_config.yml"
 		sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/devepo2.pem ansible/els/esl.yml"
 		sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/devepo2.pem ansible/els/kibana.yml"
             }
