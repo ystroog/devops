@@ -32,6 +32,9 @@
     file:
       path: /var/elasticsearch/data
       state: directory
+      recurse: yes
+      owner: 1000
+      group: 1000
       
   - name: Create Folder Kibana
     file:
@@ -41,13 +44,4 @@
       group: 1000
       mode: u+rw
       
-   - name: Change Owner
-     file:
-       path: /var/elasticsearch/data
-       recurse: yes
-       owner: 1000
-       group: 1000
 
- 
-
-e
