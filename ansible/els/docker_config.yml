@@ -3,17 +3,15 @@
 - name: Docker + ELS +Kibana Playbook
   hosts: all
   gather_facts: false
-  #pre_tasks:
-    #- raw: yum update&& yum install python3&& yum install python&& yum install python-pip&& yum install docker
-    #- raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
-    #- setup:
+  pre_tasks:
+    - raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
+    - setup:
 
   tasks:
   - name: Install docker
-    #apt:
-    yum:
+    apt:
       name: docker
-      #name: docker.io
+      name: docker.io
       state: present
       
   - name: Start docker service
