@@ -10,7 +10,8 @@
 
   tasks:
   - name: Install docker
-    apt:
+    #apt:
+    yum:
       name: docker
       #name: docker.io
       state: present
