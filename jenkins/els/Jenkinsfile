@@ -31,8 +31,7 @@ pipeline {
             steps {
                 sh "sed -i 's/host_ip/${ElstargetIP}/g' hosts/hosts"
                 sh 'cat hosts/hosts'
-		sh "ansible-playbook --list-hosts" 
-		sh "ansible-playbook -i hosts/hosts -u root -k ansible/els/docker_config.yml -vvvvv"
+		sh "ansible-playbook -i 10.0.0.29 -u root -k ansible/els/docker_config.yml -vvvvv"
                 //sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/devepo2.pem ansible/els/docker_config.yml"
 		//sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/devepo2.pem ansible/els/esl.yml"
 		//sh "ansible-playbook -i hosts  -u ubuntu -b  --private-key=/var/jenkins_home/ansible/devepo2.pem ansible/els/kibana.yml"
