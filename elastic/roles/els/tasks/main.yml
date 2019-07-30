@@ -4,16 +4,17 @@
   file:
     name: "{{ item }}"
     state: directory
+    recurse: yes
     mode: 755
     owner: 1000:1000
   with_items:
-  - "/opt/elasticsearch{{ es_version }}"
-  - "/opt/elasticsearch_config{{ es_version }}"
+  - "/opt/elasticsearch{{ es_version }}/data"
+  - "/opt/elasticsearch{{ es_version }}/config"
 
 - name: increase virtual memory
   shell: sysctl -w vm.max_map_count=262144
 
-- name: create es configuration file
+- name: create els configuration file
   template:
     src: elasticsearch.j2
     dest: "/opt/elasticsearch_config{{ es_version }}/elasticsearch.yml"
@@ -24,8 +25,8 @@
     name: elasticsearch
     state: started
     volumes:
-     - "/opt/elasticsearch{{ es_version}}:/usr/share/elasticsearch/data"
-     - "/opt/elasticsearch_config{{ es_version }}/elasticsearch.yml":"/usr/share/elasticsearch/config/elasticsearch.yml"
+     - "/opt/elasticsearch{{ es_version}}/data:/usr/share/elasticsearch/data"
+     - "/opt/elasticsearch{{ es_version }}/config/elasticsearch.yml":"/usr/share/elasticsearch/config/elasticsearch.yml"
     ports:
      - "9200:9200"
      - "9300:9300"

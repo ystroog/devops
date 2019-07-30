@@ -1,0 +1,24 @@
+---
+  hosts: {{ hosts }}
+  gather_facts: False
+  pre_tasks:
+  - raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
+  - setup:
+
+  tasks:
+   - name: Install common roles
+     role:
+      - "{{ docker, become: yes }}"
+
+
+   - name: Install ELS
+     role:
+      - "{{ {{ elasticsearch }}, become: yes }}"
+      
+   - name: Install Kibana
+     role:
+      - "{{ {{ kibana }}, become: yes }}"
+      
+   - name: Install Metric
+     role:
+      - "{{ {{ Metric }}, become: yes }}"
