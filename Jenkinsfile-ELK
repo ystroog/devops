@@ -7,7 +7,7 @@ pipeline {
             steps {
                 //cleanWs()
                 script {
-                    git credentialsId: 'devopint', url: 'https://github.com/JohnMops/Mops-DevOps-Life/'
+                    git credentialsId: 'e38ba6e7-71ef-4c72-9403-8be2ba3af9df', url: 'https://github.com/ystroog/devops.git'
                 }
             }
         }
