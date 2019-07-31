@@ -7,5 +7,5 @@
 
   tasks:
    - name: Install common roles
-     role:
-      - role "{{{{ master}}, become: yes }}"
+   - roles:
+      - role:"{{{{ master}}, become: yes }}"
