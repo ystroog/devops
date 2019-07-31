@@ -9,7 +9,7 @@
     mode: u+rw
     
  - name: Move Kibana.yml
-  template:
+   template:
     src: templates/kibana.yml
     dest: /opt/kibana{{kibana_version }}/kibana.yml
     owner: 1000

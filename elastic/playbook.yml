@@ -8,17 +8,17 @@
   tasks:
    - name: Install common roles
      role:
-      - "{{ {{ roled }}, become: yes }}"
+      - "{{ docker, become: yes }}"
 
 
    - name: Install ELS
      role:
-      - "{{ {{ rolee }}, become: yes }}"
+      - "{{ els, become: yes }}"
       
    - name: Install Kibana
      role:
-      - "{{ {{ rolek }}, become: yes }}"
+      - "{{ kiban, become: yes }}"
       
    - name: Install Metric
      role:
-      - "{{ {{ rolem }}, become: yes }}"
+      - "{{ metricbeat, become: yes }}"
