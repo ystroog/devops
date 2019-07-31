@@ -8,4 +8,4 @@
   tasks:
    - name: Install common roles
      role:
-      - role {{"{{ master}}", become: yes }}
+      - role "{{{{ master}}, become: yes }}"
