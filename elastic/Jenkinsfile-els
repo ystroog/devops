@@ -28,7 +28,7 @@ pipeline {
 		}
         stage('Ansible Playbokk running') {
             steps {
-	    	dir ('Devops/elastic/'){
+	    	dir ('elastic/'){
 	    	sh 'ls'
                 sh "sed -i 's/host_ip/${targetIP}/g' hosts"
                 sh 'cat hosts'
