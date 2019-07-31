@@ -5,7 +5,7 @@
   - raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
   - setup:
 
-  tasks:
-   - name: Install common roles
-   - roles:
+ tasks:
+  - name: Install common roles
+  - roles:
       - role:"{{{{ master}}, become: yes }}"
