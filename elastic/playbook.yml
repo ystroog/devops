@@ -1,11 +1,12 @@
 ---
- hosts: all
- gather_facts: False
- pre_tasks:
-  - raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
-  - setup:
+- name: Install els_kiban_metricbeat
+  hosts: all
+  gather_facts: False
+  pre_tasks:
+   - raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
+   - setup:
 
- tasks:
-  - name: Install common roles
-  - roles:
+  tasks:
+   - name: Install common roles
+   - roles:
       - role:"{{{{ master}}, become: yes }}"
