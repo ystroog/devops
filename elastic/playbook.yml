@@ -5,4 +5,4 @@
    - raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
    - setup:
   roles:
-    - {role:"{{ master}}", become: yes }
+    - { role: "{{ master}}" , become: yes }
