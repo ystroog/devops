@@ -1,7 +1,7 @@
 ---
   - name: Create Folder Kibana
     file:
-    path: /opt/kibana{{kiban_version}}
+    path: /opt/kibana{{kibana_version}}
     state: directory
     recurse: yes
     mode: 755
@@ -17,7 +17,7 @@
             
   - name: Run Kibana Container
     docker_container:
-      image: kibana:{{kiban_version}}
+      image: kibana:{{kibana_version}}
       name: Kibana      
       state: started
       link: 
