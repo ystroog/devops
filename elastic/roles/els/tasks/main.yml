@@ -1,6 +1,6 @@
 ---
 - name: increase virtual memory
-  shell: sysctl -w vm.max_map_count=262144
+  raw: sysctl -w vm.max_map_count=262144
   
 - name: create data directory
   file:
