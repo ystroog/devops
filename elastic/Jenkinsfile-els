@@ -14,7 +14,7 @@ pipeline {
         } 
 		stage('Ansible Playbook') {
             steps {
-                dir ('Devops/elastic/'){
+                dir ('elastic/'){
                 script { 
                 targetIP = input(
                             id: 'userInput', message: 'ip add',
