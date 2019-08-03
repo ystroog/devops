@@ -1,13 +1,14 @@
 ---
+tasks:
 
-- name: Install Docker | Run ELK containers
-  hosts: elastic
-  roles:
-    - Docker
-    - elk
+  - name: Install Docker | Run ELK containers
+   hosts: elastic
+    roles:
+     - Docker
+      - elk
     
-- name: Install metricbeat
-  hosts: agent
-  roles:
-    - Metricbeat
+  - name: Install metricbeat
+    hosts: agent
+     roles:
+     - Metricbeat
     
