@@ -1,7 +1,7 @@
 ---
 - hosts: all
   gather_facts: False
-    tasks:
+  tasks:
     - name: Update Packages
       raw: (apt-get update && apt-get -y upgrade)
 
