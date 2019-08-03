@@ -5,12 +5,12 @@
        
 - name: Create Folder DB
   file:
-    path: /opt/elasticsearch{{ els_version }}/data
+    path: /opt/elasticsearch/data
     state: directory
       
 - name: Create Folder conf
   file:
-    path: /opt/elasticsearch{{ els_version }}/config
+    path: /opt/elasticsearch/config
     owner: 1000
     group: 1000
     mode: u+rw
@@ -18,14 +18,14 @@
       
 - name: Change Owner
   file:
-    path: /opt/elasticsearch{{ els_version }}/config
+    path: /opt/elasticsearch/config
     recurse: yes
     owner: 1000
     group: 1000
      
 - name: Change Owner
   file:
-    path: /opt/elasticsearch{{ els_version }}/data
+    path: /opt/elasticsearch/data
     recurse: yes
     owner: 1000
     group: 1000
@@ -33,16 +33,16 @@
 - name: create els configuration file
   template:
     src: elasticsearch.j2
-    dest: "/opt/elasticsearch_config{{ els_version }}/elasticsearch.yml"
+    dest: "/opt/elasticsearch_config/elasticsearch.yml"
 
 - name: Run elasticsearch container
   docker_container:
-    image: elasticsearch:{{ els_version }}
+    image: elasticsearch:6.5.4
     name: elasticsearch
     state: started
     volumes:
-     - "/opt/elasticsearch{{ els_version}}/data:/usr/share/elasticsearch/data"
-     - "/opt/elasticsearch{{ els_version }}/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+     - "/opt/elasticsearch/data:/usr/share/elasticsearch/data"
+     - "/opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
     ports:
      - "9200:9200"
      - "9300:9300"
