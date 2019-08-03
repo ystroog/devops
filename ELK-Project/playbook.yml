@@ -1,7 +1,6 @@
 ---
-tasks:
 
-  - name: Install Docker | Run ELK containers
+- name: Install Docker | Run ELK containers
    hosts: elastic
     roles:
      - Docker
