@@ -3,12 +3,12 @@
   raw: sysctl -w vm.max_map_count=262144
   
        
-  - name: Create Folder DB
+- name: Create Folder DB
     file:
       path: /opt/elasticsearch{{ els_version }}/data
       state: directory
       
-  - name: Create Folder conf
+- name: Create Folder conf
     file:
       path: /opt/elasticsearch{{ els_version }}/config
       owner: 1000
@@ -16,14 +16,14 @@
       mode: u+rw
       state: directory
       
-  - name: Change Owner
+- name: Change Owner
     file:
       path: /opt/elasticsearch{{ els_version }}/config
       recurse: yes
       owner: 1000
       group: 1000
      
-  - name: Change Owner
+- name: Change Owner
     file:
       path: /opt/elasticsearch{{ els_version }}/data
       recurse: yes
