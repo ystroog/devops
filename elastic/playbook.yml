@@ -1,8 +1,17 @@
 ---
 - hosts: all
   gather_facts: False
-  #pre_tasks:
-   #- raw: sudo apt -qy update&& sudo apt install -qy python3&& sudo apt install -qy python&& sudo apt install -qy python-pip&& sudo pip install docker-py
-   #- setup:
+    tasks:
+    - name: Update Packages
+      raw: (apt-get update && apt-get -y upgrade)
+
+    - name: Install Python 2
+      raw: test -e /usr/bin/python || (apt-get update && apt-get install -y python)
+    
+    - name: Install docker py
+      raw: apt-get -y install python-pip
+      
+    - name: Install docker py
+      raw: pip install docker-py
   roles:
     - { role: "{{ master}}" , become: yes }
