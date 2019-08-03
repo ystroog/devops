@@ -4,43 +4,32 @@
   
        
 - name: Create Folder DB
-    file:
-      path: /opt/elasticsearch{{ els_version }}/data
-      state: directory
+  file:
+    path: /opt/elasticsearch{{ els_version }}/data
+    state: directory
       
 - name: Create Folder conf
-    file:
-      path: /opt/elasticsearch{{ els_version }}/config
-      owner: 1000
-      group: 1000
-      mode: u+rw
-      state: directory
+  file:
+    path: /opt/elasticsearch{{ els_version }}/config
+    owner: 1000
+    group: 1000
+    mode: u+rw
+    state: directory
       
 - name: Change Owner
-    file:
-      path: /opt/elasticsearch{{ els_version }}/config
-      recurse: yes
-      owner: 1000
-      group: 1000
+  file:
+    path: /opt/elasticsearch{{ els_version }}/config
+    recurse: yes
+    owner: 1000
+    group: 1000
      
 - name: Change Owner
-    file:
-      path: /opt/elasticsearch{{ els_version }}/data
-      recurse: yes
-      owner: 1000
-      group: 1000
+  file:
+    path: /opt/elasticsearch{{ els_version }}/data
+    recurse: yes
+    owner: 1000
+    group: 1000
      
-#- name: create data directory
- # file:
-  #  name: "{{ item }}"
-   # state: directory
-    #recurse: yes
-    #mode: 755
-    #owner: 1000:1000
-  #with_items:
-  #- "/opt/elasticsearch{{ els_version }}/data"
-  #- "/opt/elasticsearch{{ els_version }}/config"
-
 - name: create els configuration file
   template:
     src: elasticsearch.j2
