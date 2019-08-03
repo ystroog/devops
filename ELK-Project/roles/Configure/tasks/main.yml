@@ -23,14 +23,14 @@
     #- name: Install docker compose
       #raw: pip install docker-compose
 
-    - name: COMMON | Set environment
-      blockinfile:
-        dest: /etc/environment
-        block: |
-          LC_ALL=en_US.UTF-8
-          LANG=en_US.UTF-8
-      register: newenv
+    #- name: COMMON | Set environment
+     # blockinfile:
+      #  dest: /etc/environment
+       # block: |
+        #  LC_ALL=en_US.UTF-8
+         # LANG=en_US.UTF-8
+      #register: newenv
     
-    - block:
-      - name: COMMON | Generate locales
-        raw: locale-gen en_US.UTF-8
+   # - block:
+    #  - name: COMMON | Generate locales
+     #   raw: locale-gen en_US.UTF-8
