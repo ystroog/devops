@@ -1,3 +1,3 @@
 SERVER_NAME: kibana
-server.host: "{{ listen_on }}"
-ELASTICSEARCH_HOSTS:  [ "http://localhost:9200" ]
+server.host: 0.0.0.0.
+ELASTICSEARCH_HOSTS:  [ "http://35.178.24.245:9200" ]
