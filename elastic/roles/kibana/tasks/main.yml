@@ -21,7 +21,7 @@
       name: Kibana      
       state: started
       link: 
-      	- "elasticsearch"
+        - "elasticsearch"
       ports:
         - "5601:5601"
       volumes:
