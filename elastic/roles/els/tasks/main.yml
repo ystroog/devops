@@ -33,7 +33,7 @@
 - name: create els configuration file
   template:
     src: elasticsearch.j2
-    dest: "/opt/elasticsearch_config/elasticsearch.yml"
+    dest: "/opt/elasticsearch/config/elasticsearch.yml"
 
 - name: Run elasticsearch container
   docker_container:
