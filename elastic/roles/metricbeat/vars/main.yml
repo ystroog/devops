@@ -1,1 +1,1 @@
-elk_host: host_ip
+elk_host: {{ hosts }}
