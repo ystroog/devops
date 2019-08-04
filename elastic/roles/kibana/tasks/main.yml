@@ -17,13 +17,13 @@
             
 - name: Run Kibana Container
   docker_container:
-      image: kibana:6.5.4
-      name: Kibana      
-      state: started
-      link: 
-        - "elasticsearch"
-      ports:
-        - "5601:5601"
-      volumes:
-        - "/opt/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    image: kibana:6.5.4
+    name: Kibana      
+    state: started
+    link: 
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
+    volumes:
+      - "/opt/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     restart: yes
