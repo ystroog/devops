@@ -1,6 +1,6 @@
 ---
 - name: Create Folder Kibana
-    file:
+  file:
     path: /opt/kibana
     state: directory
     recurse: yes
