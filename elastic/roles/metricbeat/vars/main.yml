@@ -1,1 +1,1 @@
-elk_host: {{ hosts }}
+elk_host: "{{ hosts }}"
