@@ -49,7 +49,7 @@ pipeline {
 				sh 'ls'
                 sh "sed -i 's/host_ip/${targetIP}/g' hosts"
                 sh 'cat hosts'
-                sh "ansible-playbook -i hosts  -u ubuntu --extra-var  -e master=${_ChoosenModuleName} main.yml"
+                sh "ansible-playbook -i hosts  -u ubuntu --extra-var  master=${_ChoosenModuleName} main.yml"
 				}
             }
         }            
