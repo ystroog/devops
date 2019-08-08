@@ -6,7 +6,7 @@
   become_user: root
   become_method: sudo
   pre_tasks:
-    - raw: apt -qy update&& apt install -qy python3&& apt install -qy python&& apt install -qy python-pip&& pip install docker-py
+    - raw: yum -qy update&& apt install -qy python3&& apt install -qy python&& apt install -qy python-pip&& pip install docker-py
     - setup:
   
   #tasks:
