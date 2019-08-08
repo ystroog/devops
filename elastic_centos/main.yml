@@ -1,6 +1,10 @@
 ---
 - hosts: all
   gather_facts: False
+  remote_user: root
+  become: yes
+  become_user: root
+  become_method: sudo
   tasks:
     - name: Update Packages
       raw: (apt-get update && apt-get -y upgrade)
