@@ -6,17 +6,17 @@
   become_user: root
   become_method: sudo
   
-  tasks:
-    name: Update Packages
+- tasks:
+  - name: Update Packages
     raw: yum -y update
     
-    name: Java Install
+  - name: Java Install
     raw: yum install java-1.8.0-openjdk
 
-    name: pip Install
+  - name: pip Install
     raw: yum install python-pip
    
-    name: Install docker py
+  - name: Install docker py
     raw: pip install docker
     
   roles:
