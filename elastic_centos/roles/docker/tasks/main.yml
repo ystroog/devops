@@ -1,10 +1,13 @@
 ---
   
-  - name: Install docker
-    apt:
-      name: docker.io
-      state: present
+  - name: Pre Install docker
+    yum: 
+      raw:check-update
       
+  - name: Install docker service
+    yum:
+      raw:curl -fsSL https://get.docker.com/ | sh
+    
   - name: Start docker service
     service:
       name: docker
