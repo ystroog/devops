@@ -10,10 +10,10 @@
     raw: yum -y update
     
   - name: Java Install
-    raw: yum install java-1.8.0-openjdk
+    raw: yum -y install java-1.8.0-openjdk
 
   - name: pip Install
-    raw: yum install python-pip
+    raw: yum -y install python-pip
    
   - name: Install docker py
     raw: pip install docker
