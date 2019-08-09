@@ -5,7 +5,7 @@
   become: yes
   become_user: root
   
-- tasks:
+  tasks:
   - name: Update Packages
     raw: yum -y update
     
