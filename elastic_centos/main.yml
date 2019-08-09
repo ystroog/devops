@@ -6,17 +6,18 @@
   become_user: root
   become_method: sudo
   
-  #tasks:
-   # - name: Update Packages
-    #  raw: (apt-get update && apt-get -y upgrade)
-
-    #- name: Install Python 2
-    #  raw: test -e /usr/bin/python || (apt-get update && apt-get install -y python)
+  tasks:
+    name: Update Packages
+    raw: yum -y update
     
-    #- name: Install docker py
-    #  raw: apt-get -y install python-pip
-      
-    #- name: Install docker py
-    #  raw: pip install docker-py
+    name: Java Install
+    raw: yum install java-1.8.0-openjdk
+
+    name: pip Install
+    raw: yum install python-pip
+   
+    name: Install docker py
+    raw: pip install docker
+    
   roles:
     - { role: "{{ master}}" , become: yes }
