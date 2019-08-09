@@ -13,7 +13,7 @@
     raw: yum -y install java-1.8.0-openjdk
 
   - name: pip Install
-    raw: yum -y install python-pip
+    raw:  yum -y install python-docker-py-1.10.6-9.el7_6.noarch
    
   - name: Install docker py
     raw: pip install docker
