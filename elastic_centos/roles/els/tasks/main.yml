@@ -20,7 +20,7 @@
     
 - name: pull an image
   docker_image:
-    name: docker pull docker.elastic.co/elasticsearch/elasticsearch:{{ es_version }}
+    name: docker.elastic.co/elasticsearch/elasticsearch:{{ es_version }}
     source: pull
 
 - name: Run elasticsearch container
