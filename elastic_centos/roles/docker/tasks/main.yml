@@ -1,12 +1,10 @@
 ---
   
-  - name: Pre Install docker
-    yum: 
-      raw:check-update
+  - name: Pre Install docker 
+    raw:yum check-update
       
   - name: Install docker service
-    yum:
-      raw:curl -fsSL https://get.docker.com/ | sh
+    raw:yum curl -fsSL https://get.docker.com/ | sh
     
   - name: Start docker service
     service:
