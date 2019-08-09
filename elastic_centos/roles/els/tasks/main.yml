@@ -20,7 +20,7 @@
 
 - name: Run elasticsearch container
   docker_container:
-    image: docker.elastic.co/elasticsearch/elasticsearch:{{ es_version }}
+    image: docker pull docker.elastic.co/elasticsearch/elasticsearch:{{ es_version }}
     name: elasticsearch
     state: started
     volumes:
