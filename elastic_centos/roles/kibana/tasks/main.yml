@@ -19,6 +19,7 @@
     dest: /opt/kibana-{{ es_version }}/kibana.yml
     owner: 1000
     group: 1000 
+
 - name: pull an image
   docker_image:
     name: docker.elastic.co/kibana/kibana:{{ es_version }}
