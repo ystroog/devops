@@ -29,7 +29,7 @@
     name: elasticsearch
     state: started
     volumes:
-     - "/opt/elasticsearc{{ es_version }}:/usr/share/elasticsearch/data"
+     - "/opt/elasticsearch{{ es_version }}:/usr/share/elasticsearch/data"
      - "/opt/elasticsearch_config{{ es_version }}/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
     ports:
      - "9200:9200"

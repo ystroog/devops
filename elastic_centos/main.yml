@@ -15,8 +15,8 @@
   - name: pip Install
     raw:  yum -y install python-docker-py-1.10.6-9.el7_6.noarch
    
-  - name: Install docker py
-    raw: pip install docker
+  #- name: Install docker py
+  #  raw: pip install docker
     
   roles:
     - { role: "{{ master}}" , become: yes }
