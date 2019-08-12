@@ -35,7 +35,7 @@ pipeline {
 		stage ('Build and push an Image') {
             steps {
                 script {
-                    sh "docker login --username=ystrogo --email=ystrogo@gmail.com"
+                    sh "docker login --username=ystrogo --passworld=zaq12wsx --email=ystrogo@gmail.com"
 					sh "docker build . -t  experiment:${BuildVersion}"
 					sh "docker push ystrogo/helloworld/experiment:${BuildVersion}"
 					sh "docker save experiment:${BuildVersion} > experiment:${BuildVersion}.tar"
