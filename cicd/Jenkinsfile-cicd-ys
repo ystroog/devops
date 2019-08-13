@@ -30,7 +30,6 @@ pipeline {
                         } catch (err) {
                             println("Unit Test failed for ${BuildVersion}")
                             currentBuild.result = 'UNSTABLE'
-                        }
                     }
                 }
             }
@@ -41,7 +40,7 @@ pipeline {
                     //sh "docker login --username=ystrogo --password=zaq12wsx --email=ystrogo@gmail.com"
 					DockerImage = sh script: "docker build . -t  experiment:${BuildVersion}"
 					sh 'cat DockerImage'
-					docker.withRegistry( '', registryCredential ) {
+					docker.withRegistry( '', registryCredential )
 					DockerImage.push()
 					sh "docker push ystrogo/helloworld/experiment:${BuildVersion}"
 					sh "docker save experiment:${BuildVersion} > experiment:${BuildVersion}.tar"
@@ -58,6 +57,7 @@ pipeline {
                                 string(defaultValue: '10.0.0.32',
                                        description: 'ip address',
                                        name: 'IP')])
+						}
                     }
 				}
 			}
