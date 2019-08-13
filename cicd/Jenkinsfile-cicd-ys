@@ -1,7 +1,7 @@
 pipeline {
   options {
       timeout(time: 30, unit: 'MINUTES')
-  }
+    }
     agent {
         label 'master'
     }
@@ -28,7 +28,7 @@ pipeline {
                     dir ('./cicd') {
                         try {
                             sh 'python ExperimentTests.py'
-                        } catch (err) {
+                        }    catch (err) {
                             println("Unit Test failed for ${BuildVersion}")
                             currentBuild.result = 'UNSTABLE'
                     }
@@ -58,7 +58,6 @@ pipeline {
                                 string(defaultValue: '10.0.0.32',
                                        description: 'ip address',
                                        name: 'IP')])
-						}
                     }
 				}
 			}
