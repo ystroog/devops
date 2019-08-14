@@ -33,6 +33,14 @@ pipeline {
                 }
             }
         }
+<<<<<<< HEAD
+=======
+    }
+	agent {
+		label 'myagent'
+	}
+	stages {
+>>>>>>> 61a27a98f1c85f9ca3746bb87fa2a3b2c925d829
 		stage('build') {
 			agent {
 				label 'myagent'
