@@ -1,7 +1,7 @@
 pipeline {
   options {
       timeout(time: 30, unit: 'MINUTES')
-  }
+    }
     agent {
         label 'master'
     }
@@ -33,12 +33,10 @@ pipeline {
                 }
             }
         }
-    }
-	agent {
-		label 'myagent'
-		}
-	stages {
 		stage('build') {
+			agent {
+				label 'myagent'
+			}	
 			steps {
 			unstash 'files'
 			sh "docker build . -t  experiment:${BuildVersion}"
