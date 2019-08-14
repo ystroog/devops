@@ -21,7 +21,7 @@ pipeline {
         stage ('Unit Test') {
             steps {
                 script {
-                    dir ('./cicd') {
+                    dir ('cicd') {
                         try {
                             sh 'python ExperimentTests.py'
                         } catch (err) {
