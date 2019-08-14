@@ -28,9 +28,22 @@ pipeline {
                             println("Unit Test failed for ${BuildVersion}")
                             currentBuild.result = 'UNSTABLE'
                         }
+						stash includes: '*', name: 'files', useDefaultExcludes: false
                     }
                 }
             }
         }
     }
+	agent {
+		label 'myagent'
+		}
+	stages {
+		stage('build') {
+			steps {
+			unstash 'files'
+			sh "docker build . -t  experiment:${BuildVersion}"
+			}
+
+		}
+	}
 }
