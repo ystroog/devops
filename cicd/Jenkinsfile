@@ -33,14 +33,15 @@ pipeline {
                 }
             }
         }
-
 		stage('build') {
 			agent {
 				label 'myagent'
-			}	
-			steps {
-			unstash 'files'
-			sh "docker build . -t  experiment:${BuildVersion}"
+			}
+			dir ('cicd') {
+				steps {
+					unstash 'files'
+					sh "docker build . -t  experiment:${BuildVersion}"
+				}	
 			}
 
 		}
