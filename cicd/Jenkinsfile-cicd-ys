@@ -11,13 +11,10 @@ pipeline {
                 script {
                     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ystroog/devops.git']]])
                     CurrentVersion = sh script:"git tag | sort -r | head -1", returnStdout: true
-					sh 'cat CurrentVersion'
                     CurrentVersion = CurrentVersion.trim()
-					sh 'cat CurrentVersion'
                     nextVersion = CurrentVersion + 1
                     commitIDshort = sh script:"git rev-parse HEAD | cut -c1-10", returnStdout: true
                     BuildVersion = "${CurrentVersion}_${commitIDshort}"
-					sh 'cat BuildVersion'
                 }
             }
         }
@@ -41,9 +38,9 @@ pipeline {
                     //sh "docker login --username=ystrogo --password=zaq12wsx --email=ystrogo@gmail.com"
 					DockerImage = sh script: "docker build . -t  experiment:${BuildVersion}"
 					sh 'cat DockerImage'
-					docker.withRegistry( '', registryCredential )
-					DockerImage.push()
-					sh "docker push ystrogo/helloworld/experiment:${BuildVersion}"
+					//docker.withRegistry( '', registryCredential )
+					//DockerImage.push()
+					//sh "docker push ystrogo/helloworld/experiment:${BuildVersion}"
 					sh "docker save experiment:${BuildVersion} > experiment:${BuildVersion}.tar"
                 }
             }
@@ -66,7 +63,7 @@ pipeline {
             steps {
                 script {
                     sh "docker login --username=ystrogo --email=ystrogo@gmail.com"
-					sh "docker load --input helloworld/experiment:${BuildVersion}.tar"
+			sh "docker load --input helloworld/experiment:${BuildVersion}.tar"
                 }
             }
         }
