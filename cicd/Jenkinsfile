@@ -36,7 +36,7 @@ pipeline {
     }
 	agent {
 		label 'myagent'
-		}
+	}
 	stages {
 		stage('build') {
 			steps {
