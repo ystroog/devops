@@ -2,11 +2,12 @@ pipeline {
   options {
       timeout(time: 30, unit: 'MINUTES')
     }
-    agent {
-        label 'master'
-    }
+    agent none 
     stages {
         stage ('Checkout') {
+		    agent {
+				label 'master'
+			}
             steps {
                 script {
                     checkout([$class: 'GitSCM', branches: [[name: '*/yuri']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/DevOpsINT/Course.git']]])
@@ -19,6 +20,9 @@ pipeline {
             }
         }
         stage ('Unit Test') {
+			gent {
+				label 'master'
+			}
             steps {
                 script {
                     dir ('cicd') {
@@ -33,12 +37,10 @@ pipeline {
                 }
             }
         }
-	}
-	agent {
-		label 'myagent'
-	}			
-	stages {
 		stage('build') {
+			agent {
+				label 'myagent'
+			}
 			steps {
 				dir ('cicd') {	
 				unstash 'files'
