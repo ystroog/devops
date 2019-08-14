@@ -20,7 +20,7 @@ pipeline {
             }
         }
         stage ('Unit Test') {
-			gent {
+			agent {
 				label 'master'
 			}
             steps {
