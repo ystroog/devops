@@ -49,5 +49,34 @@ pipeline {
 			}
 
 		}
+		stage('Git Tag In proccess') {
+			agent {
+				label 'myagent'
+			}
+			steps {
+				dir ('cicd') {
+					def gitLib = load "git_push_ssh.groovy"
+					//gitLib.pushSSH(commitMsg: "Jenkins build #${BuildVersion}", tagName: "build-experiment:${BuildVersion}", files: "*.*");				
+				}	
+			}
+
+		}
+		stage('Get ip from user') {
+			agent {
+				label 'master'
+			}
+            steps {
+                dir ('elastic_centos/'){
+                script { 
+                targetIP = input(
+                            id: 'userInput', message: 'ip add',
+                            parameters: [
+                                string(defaultValue: '10.0.0.32',
+                                       description: 'ip address',
+                                       name: 'IP')])
+                    }
+				}
+			}
+		}
 	}
 }
