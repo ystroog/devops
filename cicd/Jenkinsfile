@@ -53,6 +53,7 @@ pipeline {
 			agent {
 				label 'myagent'
 			}
+			steps {
 				dir('cicd'){
 					// deletes current snapshot tag
 					sh ("git tag -d ${BuildVersion} || true")
@@ -63,7 +64,7 @@ pipeline {
 					// pushes the tags
 					sh ("git push --tags")
 				}	
-			
+			}
 		}
 	}
 }
