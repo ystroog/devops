@@ -55,7 +55,7 @@ pipeline {
 			}
 			steps {
 				dir('cicd'){
-					sh ("git config core.editor vim")
+					sh ("git config --global core.editor "\usr\local\bin\subl -n -w")
 					sh("git config user.email ystrogo@gmail.com")
 					sh("git config user.name ystroog")
 					// deletes current snapshot tag
