@@ -56,7 +56,7 @@ pipeline {
 			steps {
 				dir('cicd'){
 					// deletes current snapshot tag
-					sh ("git tag -d ${CurrentVersion} || true")
+					//sh ("git tag -d ${CurrentVersion} || true")
 					// tags current changeset
 					sh ("git tag -a ${BuildVersion} -m \"build before stage\"")
 					// deletes tag on remote in order not to fail pushing the new one
