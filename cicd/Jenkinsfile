@@ -55,6 +55,8 @@ pipeline {
 			}
 			steps {
 				dir('cicd'){
+					sh("git config user.email ystrogo@gmail.com")
+					sh("git config user.name ystroog")
 					// deletes current snapshot tag
 					//sh ("git tag -d ${CurrentVersion} || true")
 					// tags current changeset
