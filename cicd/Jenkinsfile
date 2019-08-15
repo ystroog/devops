@@ -63,7 +63,7 @@ pipeline {
 					// pushes the tags
 					sh ("git push --tags")
 				}	
-			}
+			
 		}
 	}
 }
