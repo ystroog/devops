@@ -56,7 +56,7 @@ pipeline {
 			steps {
 				dir ('cicd') {
 					def gitLib = load "git_push_ssh.groovy"
-					gitLib.pushSSH(commitMsg: "Jenkins build #${BuildVersion}", tagName: "build-experiment:${BuildVersion}", files: "*.*");				
+					//gitLib.pushSSH(commitMsg: "Jenkins build #${BuildVersion}", tagName: "build-experiment:${BuildVersion}", files: "*.*");				
 				}	
 			}
 
