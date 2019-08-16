@@ -55,17 +55,22 @@ pipeline {
 			}
 			steps {
 				dir('cicd'){
-				node {
-					String credentialsId="2bc910d2-09ff-4eec-a53f-d05892b35bc7"
-					String gitLogin="ystroog"
-					String gitRepo="https://github.com/ystroog/devops.git"
-					stage "Test Tag Push"
-					git credentialsId: "${credentialsId}", url: "${gitRepo}"   
-					tagName="My-first tagging"    
-					sh(script: "git tag $tagName")
-					sshagent([credentialsId]) {
-						sh(script: 'git push --tags')
-					}
+					withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Mylogin, usernameVariable: 'ystroog', passwordVariable: 'Zaq13edc#']]) {
+					sh("git tag -a some_tag -m 'Jenkins'")
+					//sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@<REPO> --tags')
+				
+				
+					//sh ("git config core.editor vim")
+					//sh("git config user.email ystrogo@gmail.com")
+					//sh("git config user.name ystroog")
+					// deletes current snapshot tag
+					//sh ("git tag -d ${CurrentVersion} || true")
+					// tags current changeset
+					sh ("git tag -a ${BuildVersion} -m 'Jenkin'")
+					// deletes tag on remote in order not to fail pushing the new one
+					//sh ("git push origin :refs/tags/snapshot")
+					// pushes the tags
+					sh ("git push --tags")
 				}	
 			}
 		}
