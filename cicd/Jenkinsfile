@@ -55,7 +55,7 @@ pipeline {
 			}
 			steps {
 				dir('cicd'){
-					String credentialsId="2bc910d2-09ff-4eec-a53f-d05892b35bc7"
+					String credentialsId : "2bc910d2-09ff-4eec-a53f-d05892b35bc7"
 					String gitLogin="ystroog"
 					String gitRepo="https://github.com/ystroog/devops.git"
 					git credentialsId: "${credentialsId}", url: "${gitRepo}"   
