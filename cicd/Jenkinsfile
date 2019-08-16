@@ -55,16 +55,15 @@ pipeline {
 			}
 			steps {
 				dir('cicd'){
-				node {
+					node {
 					String credentialsId="2bc910d2-09ff-4eec-a53f-d05892b35bc7"
 					String gitLogin="ystroog"
 					String gitRepo="https://github.com/ystroog/devops.git"
-					stage "Test Tag Push"
 					git credentialsId: "${credentialsId}", url: "${gitRepo}"   
 					tagName="My-first tagging"    
 					sh(script: "git tag $tagName")
-					sshagent([credentialsId]) {
-						sh(script: 'git push --tags')
+					sshagent([credentialsId])
+					sh(script: 'git push --tags')
 					}
 				}	
 			}
