@@ -55,15 +55,16 @@ pipeline {
 			}
 			steps {
 				dir('cicd'){
-					String credentialsId: '2bc910d2-09ff-4eec-a53f-d05892b35bc7', url: 'https://github.com/ystroog/devops.git
-					String gitLogin="ystroog"
-					String gitRepo="https://github.com/ystroog/devops.git"
-					git credentialsId: "${credentialsId}", url: "${gitRepo}"   
-					tagName="My-first tagging"    
-					sh(script: "git tag $tagName")
-					sshagent([credentialsId])
-					sh(script: 'git push --tags')
-				}	
+					sh("git config user.email https://github.com/ystroog/devops.git")
+					sh("git config user.name ystroog")
+					sh "git remote set-url origin https://github.com/ystroog/devops.git"
+					// tags current changeset
+					sh "git tag -a snapshot -m \"passed CI\""
+					// deletes tag on remote in order not to fail pushing the new one
+					sh "git push origin :refs/tags/snapshot"
+					// pushes the tags
+					sh "git push --tags"
+				}
 			}
 		}
 	}
