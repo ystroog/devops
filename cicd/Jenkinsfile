@@ -57,7 +57,7 @@ pipeline {
 				dir('cicd'){
 					sh("git config user.email ystrogo@gmail.com")
 					sh("git config user.name ystroog")
-					sh "git remote set-url origin https://github.com/ystroog/devops.git"
+					sh "git remote set-url origin git@github.com:https://github.com/ystroog/devops.git"
 					// tags current changeset
 					//sh "git tag -a snapshot -m \"passed CI\""
 					sh "git tag ${BuildVersion} "
