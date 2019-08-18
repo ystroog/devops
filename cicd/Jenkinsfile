@@ -47,21 +47,7 @@ pipeline {
 				sh "docker build . -t  experiment:${BuildVersion}"
 				}	
 			}
-
 		}
-			// credentialsId here is the credentials you have set up in Jenkins for pushing
-			// to that repository using username and password.
-			//withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-				//sh("git tag -a some_tag -m 'Jenkins'")
-				//sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@<REPO> --tags')
-			//}
-
-			// For SSH private key authentication, try the sshagent step from the SSH Agent plugin.
-			//sshagent (credentials: ['git-ssh-credentials-ID']) {
-				//sh("git tag -a some_tag -m 'Jenkins'")
-				//sh('git push <REPO> --tags')
-		
-		
 		stage('tag build'){
 			agent {
 				label 'master'
@@ -74,7 +60,7 @@ pipeline {
 								git config user.email ystrogo@gmail.com
 								git config user.name ystroog
 								git tag ${BuildVersion}
-								git push https://ystroog:Zaq13edc#@github.com/ystroog/devops.git ${BuildVersion}
+								git push --tag
 							"""	
 						}
 					}	
