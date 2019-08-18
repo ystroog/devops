@@ -69,8 +69,8 @@ pipeline {
 			steps {
 				script {
 					withCredentials([usernamePassword(credentialsId: '2bc910d2-09ff-4eec-a53f-d05892b35bc7', passwordVariable: 'Zaq13edc#', usernameVariable: 'ystroog')]) {
+					dir('cicd'){
 						sh """
-							dir('cicd'){
 							git config user.email ystrogo@gmail.com
 							git config user.name ystroog
 							git tag ${BuildVersion} -m "Tag from python nodule"
