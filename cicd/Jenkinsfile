@@ -61,7 +61,7 @@ pipeline {
 								git config --global user.email ystrogo@gmail.com
 								git config --global user.name ystroog
 								git tag ${BuildVersion}
-								git push ${BuildVersion} --repo https://github.com/ystroog/devops.git
+								git push --tag ${BuildVersion} --repo https://github.com/ystroog/devops.git
 							"""	
 						}
 					}	
