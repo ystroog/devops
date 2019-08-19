@@ -59,7 +59,6 @@ pipeline {
 						sh """
 						git config --global user.email ystrogo@gmail.com
 						git config --global user.name ystroog
-						//git tag -d ${BuildVersion}
 						git tag -a ${BuildVersion} -f "My First Tag"
 						git push origin :refs/tags/${BuildVersion}
 						git push --tags
