@@ -67,7 +67,7 @@ pipeline {
 								//git push origin ${BuildVersion} --repo https://ystroog@githuAb.com/ystroog/devops.git ${BuildVersion}
 							"""	
 						}
-					}	
+						
 				}
 			}
 		}
