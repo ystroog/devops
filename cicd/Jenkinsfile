@@ -58,7 +58,7 @@ pipeline {
 					withCredentials([usernamePassword(credentialsId: '2bc910d2-09ff-4eec-a53f-d05892b35bc7', passwordVariable: 'Zaq13edc#', usernameVariable: 'ystroog')]) {
 						sh """
 						git tag ${BuildVersion}
-						git push ${BuildVersion}
+						git push --tags ${BuildVersion}
 						//git push origin ${BuildVersion} --repo https://ystroog:9aea19dc81b71704580fce2c76e8a3293f06ada8@githuAb.com/ystroog/devops.git
 						//git push origin ${BuildVersion} --repo https://ystroog@githuAb.com/ystroog/devops.git ${BuildVersion}
 						"""	
