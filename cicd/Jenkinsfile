@@ -58,8 +58,8 @@ pipeline {
 					withCredentials([usernamePassword(credentialsId: '2bc910d2-09ff-4eec-a53f-d05892b35bc7', passwordVariable: 'Zaq13edc#', usernameVariable: 'ystroog')]) {
 						sh """
 						git remote set-url origin https://github.com/ystroog/devops.git
-						git config --global user.email ystrogo@gmail.com
-						git config --global user.name ystroog
+						git config --global user.email "ystrogo@gmail.com"
+						git config --global user.name "ystroog"
 						git tag -f ${BuildVersion} 
 						git push origin ${BuildVersion}
 						//git push --tags
