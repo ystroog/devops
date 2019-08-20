@@ -60,6 +60,7 @@ pipeline {
 						git remote set-url origin https://github.com/ystroog/devops.git
 						git config --global user.email "ystrogo@gmail.com"
 						git config --global user.name "ystroaaaag"
+						export GITHUB_TOKEN=9aea19dc81b71704580fce2c76e8a3293f06ada8
 						git config --global hub.protocol https
 						git tag -f ${BuildVersion} 
 						git push origin ${BuildVersion}
