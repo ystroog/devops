@@ -25,9 +25,3 @@
       name: docker
       state: started
 
-  - name: Start experiment container
-    docker_container:
-      name: experiment
-      image: experiment:${BuildVersion}:lts
-      state: started
-

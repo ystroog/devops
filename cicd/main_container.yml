@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  gather_facts: False
+  become: yes
+  become_user: root
+  
+  tasks:
+  - name: Start experiment container
+    docker_container:
+      name: experiment
+      image: experiment:${BuildVersion}:lts
+      state: started
