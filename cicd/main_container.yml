@@ -6,8 +6,15 @@
   become_user: root
   
   tasks:
+  - name: Load tar file
+    docker_image:
+      name: docker-images.tar
+      tag: latest
+      archive_path: /tmp/docker/
+      source: local
+      
   - name: Start experiment container
     docker_container:
       name: experiment
-      image: experiment:"{{BuildVersion}}"
+      image: /tmp/docker/experiment:"{{BuildVersion}}"
       state: started
