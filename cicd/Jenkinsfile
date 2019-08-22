@@ -96,7 +96,7 @@ pipeline {
 			steps {
 				dir ('cicd') {	
 				sh "docker save -o docker-images.tar experiment:${BuildVersion}"
-				sh "docker-machine scp ./docker-images.tar ${targetIP}:/"
+				sh "scp docker-images.tar root@${targetIP}:/"
 				}	
 			}
 		}
