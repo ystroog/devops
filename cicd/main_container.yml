@@ -6,11 +6,13 @@
   become_user: root
   
   tasks:
-  - name: Load tar file
+  - name: Build an image and push it to a private repo
     docker_image:
+      build:
+        path: /tmp/docker
       name: docker-images.tar
-      archive_path: /tmp/docker/
-      source: local
+      tag: v1
+      source: build
       
   - name: Start experiment container
     docker_container:
