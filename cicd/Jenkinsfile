@@ -89,7 +89,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Copy Image To the Remote Machined) {
+		stage('Copy Image To the Remote Machined') {
 			agent {
 				label 'myagent'
 			}
