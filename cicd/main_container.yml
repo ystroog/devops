@@ -9,7 +9,6 @@
   - name: Load tar file
     docker_image:
       name: docker-images.tar
-      tag: latest
       archive_path: /tmp/docker/
       source: local
       
