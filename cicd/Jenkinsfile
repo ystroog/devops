@@ -4,75 +4,7 @@ pipeline {
     }
     agent none 
     stages {
-        stage ('Checkout') {
-		    agent {
-				label 'master'
-			}
-            steps {
-                script {
-				    deleteDir()
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '2bc910d2-09ff-4eec-a53f-d05892b35bc7', url: 'https://github.com/ystroog/devops.git']]])
-                    CurrentVersion = sh script:"git tag | sort -r | head -1", returnStdout: true
-                    CurrentVersion = CurrentVersion.trim()
-                    nextVersion = CurrentVersion + 1
-                    commitIDshort = sh script:"git rev-parse HEAD | head -1 | cut -c1-10", returnStdout: true
-                    BuildVersion = "${CurrentVersion}_${commitIDshort}"
-                }
-            }
-        }
-        stage ('Unit Test') {
-			agent {
-				label 'master'
-			}
-            steps {
-                script {
-                    dir ('cicd') {
-                        try {
-                            sh 'python ExperimentTests.py'
-                        } catch (err) {
-                            println("Unit Test failed for ${BuildVersion}")
-                            currentBuild.result = 'UNSTABLE'
-                        }
-						stash includes: '*', name: 'files', useDefaultExcludes: false
-                    }
-                }
-            }
-        }
-		stage('build') {
-			agent {
-				label 'myagent'
-			}
-			steps {
-				dir ('cicd') {	
-				unstash 'files'
-				sh "docker build . -t  experiment:${BuildVersion}"
-				}	
-			}
-		}
-		stage('tag build'){
-			agent {
-				label 'master'
-			}
-			steps {
-				script {
-					withCredentials([usernamePassword(credentialsId: '2bc910d2-09ff-4eec-a53f-d05892b35bc7', passwordVariable: 'Zaq13edc#', usernameVariable: 'ystroog')]) {
-						sh """
-						git remote set-url origin https://github.com/ystroog/devops.git
-						git remote set-url origin git@github.com:ystroog/devops.git
-						git config --global user.email "ystrogo@gmail.com"
-						git config --global user.name "ystroog"
-						export GITHUB_TOKEN=9aea19dc81b71704580fce2c76e8a3293f06ada8
-						curl -u ystroog:9aea19dc81b71704580fce2c76e8a3293f06ada8 https://api.github.com/user
-						git config --global hub.protocol https
-						git tag -f ${BuildVersion} 
-						git push origin ${BuildVersion}
-						"""	
-						
-					}	
-				}
-			}
-		}
-		stage('Get ip from user') {
+        stage('Get ip from user') {
 			agent {
 				label 'master'
 			}
