@@ -9,7 +9,7 @@
   - name: Load image from archive and push to a private registry
     docker_image:
       name: experiment:"{{Build}}"
-      load_path: present
+      load_path: /tmp/docker
       source: load
       
   - name: Start experiment container
