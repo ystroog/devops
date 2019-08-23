@@ -16,5 +16,5 @@
   - name: Start experiment container
     docker_container:
       name: experiment
-      image: experiment:"{{Build}}"
+      image: experiment:{{Build}}
       state: started
