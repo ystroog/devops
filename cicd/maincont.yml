@@ -8,7 +8,8 @@
   tasks:
   - name: Load image from archive and push to a private registry
     docker_image:
-      name: localhost:5000/tmp/docker/experiment:"{{Build}}"
+      name: localhost:5000/tmp/docker/experiment
+      tag: "{{Build}}"
       load_path: /tmp/docker/docker-images.tar
       source: load
       
