@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  gather_facts: False
+  become: yes
+  become_user: root
+  
+  tasks:
+  - name: Load image from archive and push to a private registry
+    docker_image:
+      name: localhost:5000/tmp/docker/experiment
+      tag: "{{Build}}"
+      load_path: /tmp/docker/docker-images.tar
+      source: load
+      
+  - name: Start experiment container
+    docker_container:
+      name: experiment
+      image: experiment:{{Build}}
+      state: started

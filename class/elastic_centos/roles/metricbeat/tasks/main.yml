@@ -1,0 +1,25 @@
+---
+    
+- name: Download Metricbeat
+  raw: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-6.5.4-x86_64.rpm
+  
+- name: DPKG Metricbeat
+  raw: rpm -vi metricbeat-{{ es_version }}-x86_64.rpm
+      
+      
+- name: Create Working Folder For Metricbeat
+  file:
+    name: /etc/metricbeat{{ es_version }}
+    state: directory
+    mode: 755
+      
+- name: Create metricbeat configuration file
+  template:
+    src: metricbeat.yml
+    dest: /etc/metricbeat{{ es_version }}/metricbeat.yml
+        
+    #- name: Change the ELK output IP
+    #  raw: sed -i 's/localhost:9200/{{ elk_host }}:9200/g' /etc/metricbeat{{ es_version }}/metricbeat.yml
+      
+- name: Start Metricbeat
+  raw: service metricbeat start

@@ -1,0 +1,60 @@
+How to install HAProxy load balancer on CentOS
+https://upcloud.com/community/tutorials/haproxy-load-balancer-centos/
+Try this guide out on UpCloud with our free trial! Get started
+Load balancing is a common solution for distributing web applications horizontally across multiple hosts while providing the users with a single point of access to the service. HAProxy is one of the most popular open source load balancing software, which also offers high availability and proxy functionality.
+
+HAProxy aims to optimise resource usage, maximise throughput, minimise response time, and avoid overloading any single resource. It is available for install on many Linux distributions like CentOS 7 in this guide, but also on Debian 8 and Ubuntu 16 systems.
+
+HAProxy is particularly suited for very high traffic websites and is therefore often used to improve web service reliability and performance for multi-server configurations. This guide lays out the steps for setting up HAProxy as a load balancer on CentOS 7 to its own cloud host which then directs the traffic to your web servers.
+
+As a pre-requirement for the best results, you should have a minimum of two web servers and a server for the load balancer. The web servers need to be running at least the basic web service such as nginx or httpd to test out the load balancing between them.
+
+⦁	Installing HAProxy CentOS 7
+As a fast developing open source application HAProxy available for install in the CentOS default repositories might not be the latest release. To find out what version number is being offered through the official channels enter the following command.
+
+sudo yum -y install haproxy
+sudo yum install gcc pcre-static pcre-devel -y
+⦁	FW rules open
+
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --permanent --zone=public --add-port=8181/tcp
+sudo firewall-cmd --reload
+⦁	Configuration File
+vi /etc/haproxy/haproxy.cfg
+global
+   log /dev/log local0
+   log /dev/log local1 notice
+   chroot /var/lib/haproxy
+   stats timeout 30s
+   user haproxy
+   group haproxy
+   daemon
+
+defaults
+   log global
+   mode http
+   option httplog
+option dontlognull
+   timeout connect 5000
+   timeout client 50000
+   timeout server 50000
+
+frontend http_front
+   bind *:80
+   stats uri /haproxy?stats
+   acl url_blog path_beg /blog
+   use_backend blog_back if url_blog
+   default_backend http_back
+
+backend http_back
+   balance roundrobin
+   server <server name> <private IP>:80 check
+   server <server name> <private IP>:80 check
+
+backend blog_back
+   server <server name> <private IP>:80 check
+
+⦁	Restart the service
+systemctl restart haproxy
+⦁	Testing and setup
+http://<load balancer public IP>/haproxy?stats
