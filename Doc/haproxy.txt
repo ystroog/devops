@@ -58,3 +58,14 @@ backend blog_back
 systemctl restart haproxy
 ⦁	Testing and setup
 http://<load balancer public IP>/haproxy?stats
+
+commands only:
+sudo yum -y install haproxy
+sudo yum install gcc pcre-static pcre-devel -y
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --permanent --zone=public --add-port=8181/tcp
+sudo firewall-cmd --reload
+vi /etc/haproxy/haproxy.cfg
+
+
+
